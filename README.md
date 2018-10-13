@@ -9,4 +9,4 @@ The simple interest amount is equal to the principal amount times the annual int
 Simple interest amount = principal amount × (rate / m) × n
 
 #Dependencies
-..* BootStrap
+* BootStrap
