@@ -52,4 +52,12 @@ function showError(error){
 
     //insert error @ dom before heading
     card.insertBefore(errorDiv, heading);
+
+    //clear error
+    setTimeout(clearError, 3000);
+}
+
+function clearError() {
+    //use the alert class from bootstrap to remove error alert
+    document.querySelector('.alert').remove();
 }
