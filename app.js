@@ -24,13 +24,32 @@ function calcResults(e) {
     const x = Math.pow(1 + calcInterest, calcPayments);
     const monthly = (principal * x * calcInterest) / (x-1);
 
+    //calculate a non infinite output
     if(isFinite(monthly)) {
         monthlyPay.value = monthly.toFixed(2);
         totalPay.value = (monthly * calcPayments).toFixed(2);
         totalInterest.value = ((monthly * calcPayments) - principal).toFixed(2);
     } else {
-        console.log('check for errors');
+        showError('ERROR Please check fields!');
     }
 
     e.preventDefault();
+}
+
+function showError(error){
+    //create div element
+    const errorDiv = document.createElement('div');
+
+    //get element
+    const card = document.querySelector('.card');
+    const heading = document.querySelector('.heading');
+
+    // Add class
+    errorDiv.className = 'alert alert-danger';
+
+    //create text node and append
+    errorDiv.appendChild(document.createTextNode(error));
+
+    //insert error @ dom before heading
+    card.insertBefore(errorDiv, heading);
 }
