@@ -1,11 +1,19 @@
 // listen for submit
 
-document.querySelector("#loan-form").addEventListener('submit', calcResults);
+document.querySelector("#loan-form").addEventListener('submit', function(e){
+    //hide results
+    document.querySelector('#results').style.display = 'none';
+
+    //display loader
+    document.querySelector('#loading').style.display = 'block';
+
+    setTimeout(calcResults, 2000);
+    e.preventDefault();
+});
 
 //
-function calcResults(e) {
+function calcResults() {
     // UI variables
-
     const amount = document.querySelector('#amount');
     const interest = document.querySelector('#interest');
     const years = document.querySelector('#years');
@@ -29,14 +37,26 @@ function calcResults(e) {
         monthlyPay.value = monthly.toFixed(2);
         totalPay.value = (monthly * calcPayments).toFixed(2);
         totalInterest.value = ((monthly * calcPayments) - principal).toFixed(2);
+
+         //show results
+    document.querySelector('#results').style.display = 'block';
+
+    //hide loader
+    document.querySelector('#loading').style.display = 'none';
     } else {
         showError('ERROR Please check fields!');
     }
 
-    e.preventDefault();
 }
 
 function showError(error){
+
+     //hide results
+     document.querySelector('#results').style.display = 'none';
+
+
+     //hide loader
+     document.querySelector('#loading').style.display = 'none';
     //create div element
     const errorDiv = document.createElement('div');
 
